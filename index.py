@@ -1,30 +1,32 @@
-import usb.core
-import usb.util
+import sys,os, time
+import platform
+from random import randint
+import serial,serial.tools.list_ports #pip install pyserial
 
-# find our device
-dev = usb.core.find(idVendor=0xfffe, idProduct=0x00)
 
-# was it found?
-if dev is None:
-    raise ValueError('Device not found')
+def find_USB_device():
+    myports = [tuple(p) for p in list(serial.tools.list_ports.comports())]
+    print(myports)
+    usb_port_list = [p[0] for p in myports]
+    
+    return usb_port_list
 
-# set the active configuration. With no arguments, the first
-# configuration will be the active one
-dev.set_configuration()
+def readData(self):
+        self.serial.flush() # it is buffering. required to get the data out *now*
+        answer=""
+        while  self.serial.inWaiting()>0: #self.serial.readable() and
+            answer += "\n"+str(self.serial.readline()).replace("\\r","").replace("\\n","").replace("'","").replace("b","")
+        return answer    
 
-# get an endpoint instance
-cfg = dev.get_active_configuration()
-intf = cfg[(0,0)]
+find_USB_device()
 
-ep = usb.util.find_descriptor(
-    intf,
-    # match the first OUT endpoint
-    custom_match = \
-    lambda e: \
-        usb.util.endpoint_direction(e.bEndpointAddress) == \
-        usb.util.ENDPOINT_OUT)
+ser = serial.Serial(
+    port='COM5',\
+    baudrate=57600,\
+    parity=serial.PARITY_NONE,\
+    stopbits=serial.STOPBITS_ONE,\
+    bytesize=serial.EIGHTBITS,\
+        timeout=0)
 
-assert ep is not None
-
-# write the data
-ep.write('test')
+while (True):
+	print(ser.readline())
