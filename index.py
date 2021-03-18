@@ -5,22 +5,30 @@ import base64
 def byte_xor(ba1, ba2):
     return bytes([_a ^ _b for _a, _b in zip(ba1, ba2)])
 
-APPKEY = b'thisismyappkey'
+APPKEY = input("Enter the APPKEY to login : ")
+#APPKEY = b'thisismyappkey'
 
+isPassCorrect = True
 
-ser = serial.Serial(
-    port='COM1',\
-    baudrate=57600,\
-    parity=serial.PARITY_NONE,\
-    stopbits=serial.STOPBITS_ONE,\
-    bytesize=serial.EIGHTBITS,\
-    timeout=0)
+if (isPassCorrect):
+    print("Welcome !")
+else:
+    print("It's not the right APPKEY !")
 
-print("Starting to read the USB DATA")
+if (isPassCorrect):
+    ser = serial.Serial(
+        port='COM1',\
+        baudrate=57600,\
+        parity=serial.PARITY_NONE,\
+        stopbits=serial.STOPBITS_ONE,\
+        bytesize=serial.EIGHTBITS,\
+        timeout=0)
 
-while (True):
-    decrypt=byte_xor(ser.readline(), APPKEY)
-    if decrypt != b'':
-        print(decrypt)
+    print("Starting to read the USB DATA")
+
+    while (True):
+        decrypt=byte_xor(ser.readline(), APPKEY)
+        if decrypt != b'':
+            print(decrypt)
 
 
