@@ -16,6 +16,8 @@ ser = serial.Serial(
     bytesize=serial.EIGHTBITS,\
     timeout=0)
 
+print("Starting to read the USB DATA")
+
 while (True):
     decrypt=byte_xor(ser.readline(), APPKEY)
     if decrypt != b'':
