@@ -8,10 +8,10 @@ def byte_xor(ba1, ba2):
     return bytes([_a ^ _b for _a, _b in zip(ba1, ba2)])
 
 
-APPKEYtmp = input("Enter the APPKEY to login : ")
+APPKEYtmp = str.encoded(input("Enter the APPKEY to login : "))
 APPKEY = b'1234'
 
-isPassCorrect = b(APPKEYtmp) == APPKEY
+isPassCorrect = APPKEYtmp == APPKEY
 
 if (isPassCorrect):
     print("Welcome !")
