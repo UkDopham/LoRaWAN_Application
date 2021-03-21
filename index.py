@@ -38,10 +38,10 @@ if (isPassCorrect):
     while (True):
         s = ser.readline()
         if s != b'' and s != b'\r\n' and s != b'\\r\\n':
-            tempBytes = s
+            tempBytes = s.split()
             print("Data : " + str(tempBytes))
             #temperature = (  ((((int(tempBytes[0])<<8) + (int(tempBytes[1]))/65536.0)*165.0 ) - 40.0  ) )
-            temperature = (tempBytes[0] * 256) + tempBytes[1]
+            temperature = (int(tempBytes[0]) <<8) + int(tempBytes[2])
             print(temperature)
             #print(byte_xor(s, APPKEY))
         #decrypt=byte_xor(ser.readline(), APPKEY)
