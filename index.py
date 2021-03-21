@@ -1,23 +1,30 @@
-import serial,serial.tools.list_ports #pip install pyserial
+import serial
+from serial import Serial
 import base64
 
 
 def byte_xor(ba1, ba2):
-    return bytes([_a ^ _b for _a, _b in zip(ba1, ba2)])
+    return bytearray(a^b for a, b in zip(*map(bytearray, [ba1, ba2]))) 
+    #return bytes([_a ^ _b for _a, _b in zip(ba1, ba2)])
 
-APPKEY = input("Enter the APPKEY to login : ")
-#APPKEY = b'thisismyappkey'
 
-isPassCorrect = True
+APPKEYtmp = input("Enter the APPKEY to login : ")
+APPKEY = b'1234'
+
+isPassCorrect = b(APPKEYtmp) == APPKEY
 
 if (isPassCorrect):
     print("Welcome !")
 else:
     print("It's not the right APPKEY !")
 
+
+
 if (isPassCorrect):
+    port = input("Which port ?")
+
     ser = serial.Serial(
-        port='COM1',\
+        port='/dev/ttyACM'+str(port),\
         baudrate=57600,\
         parity=serial.PARITY_NONE,\
         stopbits=serial.STOPBITS_ONE,\
@@ -27,8 +34,10 @@ if (isPassCorrect):
     print("Starting to read the USB DATA")
 
     while (True):
-        decrypt=byte_xor(ser.readline(), APPKEY)
-        if decrypt != b'':
-            print(decrypt)
-
-
+        s = ser.readline()
+        if s != b'':
+            print("Data : " + s.split())
+            print(byte_xor(s, APPKEY))
+        #decrypt=byte_xor(ser.readline(), APPKEY)
+        #if decrypt != b'':
+        #    print(decrypt)
