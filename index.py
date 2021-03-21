@@ -40,9 +40,12 @@ if (isPassCorrect):
         if s != b'' and s != b'\r\n' and s != b'\\r\\n':
             tempBytes = s.split()
             print("Data : " + str(tempBytes))
+            tmpBytes = [tempBytes[0],tempBytes[1]]
+            decrypt=byte_xor(tmpBytes, APPKEY)
+            print(decrypt)
             #temperature = (  ((((int(tempBytes[0])<<8) + (int(tempBytes[1]))/65536.0)*165.0 ) - 40.0  ) )
-            temperature = ((int(tempBytes[0]) <<8) + int(tempBytes[1]))/100
-            print("Device " + str(int(tempBytes[2])) + " " + str(temperature))
+            temperature = ((int(decrypt[0]) <<8) + int(decrypt[1]))/100
+            print("Device " + str(int(tempBytes[2])) + " " + str(temperature) + " C°")
             #print(byte_xor(s, APPKEY))
         #decrypt=byte_xor(ser.readline(), APPKEY)
         #if decrypt != b'':
