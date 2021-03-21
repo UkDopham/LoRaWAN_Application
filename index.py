@@ -4,8 +4,8 @@ import base64
 
 
 def byte_xor(ba1, ba2):
-    return bytearray(a^b for a, b in zip(*map(bytearray, [ba1, ba2]))) 
-    #return bytes([_a ^ _b for _a, _b in zip(ba1, ba2)])
+    #return bytearray(a^b for a, b in zip(*map(bytearray, [ba1, ba2]))) 
+    return bytes([_a ^ _b for _a, _b in zip(ba1, ba2)])
 
 
 APPKEYtmp = input("Enter the APPKEY to login : ")
@@ -33,11 +33,17 @@ if (isPassCorrect):
 
     print("Starting to read the USB DATA")
 
+    #temperature = ((bytes[0] << 8) | bytes[1]) / 100;
+
     while (True):
         s = ser.readline()
         if s != b'':
-            print("Data : " + s.split())
-            print(byte_xor(s, APPKEY))
+            tempBytes = str(s).split()
+            print("Data : " + str(tempBytes))
+            if tempBytes.length == 2 :
+                temperature = ((tempBytes[0] << 8) | tempBytes[1]) / 100;
+                print(temperature)
+            #print(byte_xor(s, APPKEY))
         #decrypt=byte_xor(ser.readline(), APPKEY)
         #if decrypt != b'':
         #    print(decrypt)
