@@ -40,7 +40,7 @@ if (isPassCorrect):
         if s != b'' and s != b'\r\n' and s != b'\\r\\n':
             tempBytes = s.split()
             print("Data raw: " + str(tempBytes))
-            tmpBytes = [bytes(tempBytes[0]),bytes(tempBytes[1])]            
+            tmpBytes = [int(tempBytes[0]),int(tempBytes[1])]            
             print("Data : " + str(tmpBytes))
             decrypt=byte_xor(tmpBytes, APPKEY)
             print(decrypt)
