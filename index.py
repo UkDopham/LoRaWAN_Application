@@ -38,7 +38,7 @@ if (isPassCorrect):
     while (True):
         s = ser.readline()
         if s != b'':
-            tempBytes = str(s).split()
+            tempBytes = bytes(str(s).split())
             print("Data : " + str(tempBytes))
             if len(tempBytes) == 2 :
                 temperature = ((tempBytes[0] << 8) | tempBytes[1]) / 100;
