@@ -8,8 +8,8 @@ def byte_xor(ba1, ba2):
     return bytes([_a ^ _b for _a, _b in zip(ba1, ba2)])
 
 
-APPKEYtmp = str.encode(input("Enter the APPKEY to login : "))
-APPKEY = b'1234'
+APPKEYtmp = int(input("Enter the APPKEY to login : "))
+APPKEY = 1234
 
 isPassCorrect = APPKEYtmp == APPKEY
 
@@ -46,7 +46,7 @@ if (isPassCorrect):
             print(decrypt)
             #temperature = (  ((((int(tempBytes[0])<<8) + (int(tempBytes[1]))/65536.0)*165.0 ) - 40.0  ) )
             temperature = ((int(decrypt[0]) <<8) + int(decrypt[1]))/100
-            print("Device " + str(int(tempBytes[2])) + " " + str(temperature) + " C°")
+            print("Device : " + str(int(tempBytes[2])) + " " + str(temperature) + " C°")
             #print(byte_xor(s, APPKEY))
         #decrypt=byte_xor(ser.readline(), APPKEY)
         #if decrypt != b'':
