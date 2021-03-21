@@ -37,7 +37,7 @@ if (isPassCorrect):
 
     while (True):
         s = ser.readline()
-        if s != b'':
+        if s != b'' || s! b'\r\n' || s! b'\\r\\n':
             tempBytes = str(s).split()
             print("Data : " + str(tempBytes))
             if len(tempBytes) == 2 :
