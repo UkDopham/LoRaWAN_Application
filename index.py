@@ -37,10 +37,10 @@ if (isPassCorrect):
 
     while (True):
         s = ser.readline()
-        if s != b'' || s! b'\r\n' || s! b'\\r\\n':
+        if s != b'' or s! b'\r\n' or s! b'\\r\\n':
             tempBytes = str(s).split()
             print("Data : " + str(tempBytes))
-            if len(tempBytes) == 2 :
+            if len(tempBytes) == 3 :
                 temperature = (  ((((int(tempBytes[0])<<8) + (int(tempBytes[1]))/65536.0)*165.0 ) - 40.0  ) )
                 print(temperature)
             #print(byte_xor(s, APPKEY))
