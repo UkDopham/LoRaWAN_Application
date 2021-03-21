@@ -1,6 +1,7 @@
 import serial
 from serial import Serial
 import base64
+from itertools import cycle
 
 
 def byte_xor(ba1, ba2):
