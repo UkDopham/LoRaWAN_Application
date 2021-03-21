@@ -39,10 +39,9 @@ if (isPassCorrect):
         s = ser.readline()
         if s != b'':
             tempBytes = str(s).split()
-            print(type(tempBytes))
             print("Data : " + str(tempBytes))
             if len(tempBytes) == 2 :
-                temperature = ((tempBytes[0] << 8) | tempBytes[1]) / 100;
+                temperature = ((bytes(tempBytes[0]) << 8) | bytes(tempBytes[1]) / 100;
                 print(temperature)
             #print(byte_xor(s, APPKEY))
         #decrypt=byte_xor(ser.readline(), APPKEY)
