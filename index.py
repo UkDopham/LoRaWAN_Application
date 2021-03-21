@@ -7,7 +7,11 @@ from itertools import cycle
 def byte_xor(ba1, ba2):
     #return bytearray(a^b for a, b in zip(*map(bytearray, [ba1, ba2]))) 
     #return bytes([_a ^ _b for _a, _b in zip(ba1, ba2)])
-    return ''.join(chr(a ^ ord(b)) for (a, b) in zip(ba1, cycle(ba2)))
+    #return ''.join(chr(a ^ ord(b)) for (a, b) in zip(ba1, cycle(ba2)))
+    for i in range (len(ba1)):
+        for j in range (len(ba2)):
+            ba1[i] = (ba1[i]^ba2[j])
+    return ba1
 
 
 APPKEYtmp = str.encode(input("Enter the APPKEY to login : "))
