@@ -38,7 +38,7 @@ if (isPassCorrect):
     while (True):
         s = ser.readline()
         if s != b'' and s != b'\r\n' and s != b'\\r\\n':
-            tempBytes = str(s).split()
+            tempBytes = s
             print("Data : " + str(tempBytes))
             temperature = (  ((((int(tempBytes[0])<<8) + (int(tempBytes[1]))/65536.0)*165.0 ) - 40.0  ) )
             print(temperature)
