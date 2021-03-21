@@ -40,7 +40,7 @@ if (isPassCorrect):
         if s != b'':
             tempBytes = str(s).split()
             print("Data : " + str(tempBytes))
-            if tempBytes.length == 2 :
+            if len(tempBytes) == 2 :
                 temperature = ((tempBytes[0] << 8) | tempBytes[1]) / 100;
                 print(temperature)
             #print(byte_xor(s, APPKEY))
