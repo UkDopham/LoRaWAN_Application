@@ -41,8 +41,8 @@ if (isPassCorrect):
             tempBytes = s.split()
             print("Data : " + str(tempBytes))
             #temperature = (  ((((int(tempBytes[0])<<8) + (int(tempBytes[1]))/65536.0)*165.0 ) - 40.0  ) )
-            temperature = (int(tempBytes[0]) <<8) + int(tempBytes[2])
-            print(temperature)
+            temperature = (int(tempBytes[0]) <<8) + int(tempBytes[1])/100
+            print("Device " + tempBytes[2] + " " + temperature)
             #print(byte_xor(s, APPKEY))
         #decrypt=byte_xor(ser.readline(), APPKEY)
         #if decrypt != b'':
